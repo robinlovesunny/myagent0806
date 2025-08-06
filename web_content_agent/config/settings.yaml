@@ -1,0 +1,71 @@
+api:
+  bailian:
+    # 阿里云百炼API配置
+    endpoint: null  # 可选，默认使用官方端点
+    model: "qwen-max"  # 默认模型
+    temperature: 0.7
+    max_tokens: 2000
+    top_p: 0.8
+    max_retries: 3
+    timeout: 60
+
+crawler:
+  # 网页爬取配置
+  timeout: 30
+  max_retries: 3
+  delay: 1.0  # 批量爬取时的延迟（秒）
+  headers:
+    User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+    Accept-Language: "zh-CN,zh;q=0.9,en;q=0.8"
+    Accept-Encoding: "gzip, deflate, br"
+    DNT: "1"
+    Connection: "keep-alive"
+
+processor:
+  # 内容处理配置
+  min_text_length: 10
+  max_text_length: 50000
+  remove_tags:
+    - script
+    - style
+    - nav
+    - header
+    - footer
+    - aside
+    - advertisement
+    - ads
+    - sidebar
+    - menu
+    - comment
+  remove_classes:
+    - nav
+    - menu
+    - sidebar
+    - footer
+    - header
+    - ad
+    - ads
+    - advertisement
+    - comment
+    - share
+    - social
+    - related
+    - recommend
+    - popup
+    - modal
+
+output:
+  # 输出配置
+  default_format: "markdown"
+  save_raw_content: false
+  add_metadata: true
+  include_statistics: true
+
+logging:
+  # 日志配置
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "web_content_agent.log"
+  max_size: "10MB"
+  backup_count: 3
